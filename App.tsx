@@ -7,7 +7,6 @@
 
 import { StatusBar, StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import WelcomeScreen from './src/screens/Auth/WelcomeScreen/WelcomeScreen';
 import AuthStackNavigation from './src/navigation/AuthStackNavigation';
 import { NavigationContainer } from '@react-navigation/native';
 
