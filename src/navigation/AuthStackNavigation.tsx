@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import WelcomeScreen from '../screens/Auth/WelcomeScreen';
@@ -6,6 +6,9 @@ import LoginScreen from '../screens/Auth/LoginScreen';
 import SignupScreen from '../screens/Auth/SignupScreen';
 import { AuthStackParamList } from '../../RootStackParamList';
 import PasswordScreen from '../screens/Auth/PasswordScreen';
+import CreatePasswordScreen from '../screens/Auth/CreatePasswordScreen';
+import EmailVerifyScreen from '../screens/Auth/EmailVerifyScreen';
+import OptVerifyScreen from '../screens/Auth/OptVerifyScreen';
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 export default function AuthStackNavigation() {
@@ -15,6 +18,12 @@ export default function AuthStackNavigation() {
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
       <Stack.Screen name="PasswordScreen" component={PasswordScreen} />
       <Stack.Screen name="SignupScreen" component={SignupScreen} />
+      <Stack.Screen
+        name="CreatePasswordScreen"
+        component={CreatePasswordScreen}
+      />
+      <Stack.Screen name="EmailVerifyScreen" component={EmailVerifyScreen} />
+      <Stack.Screen name="OptVerifyScreen" component={OptVerifyScreen} />
     </Stack.Navigator>
   );
 }

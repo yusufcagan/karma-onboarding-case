@@ -33,13 +33,6 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     color: Colors.Black,
   },
-  descText: {
-    textAlign: 'center',
-    color: '#B3AABC',
-    marginTop: 15,
-    fontSize: 14,
-    fontWeight: '500',
-  },
   continueButton: {
     backgroundColor: Colors.Primary,
     marginHorizontal: 35,

@@ -13,34 +13,45 @@ import * as Progress from 'react-native-progress';
 import Colors from '../../../../assets/theme/Colors';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { AuthStackParamList } from '../../../../RootStackParamList';
-import { checkUsernameAvailability } from '../../../api/auth';
+import {
+  checkEmailAvailability,
+  checkUsernameAvailability,
+} from '../../../api/auth';
 import ModalComponent from '../../../components/ModalComponent';
 
-export default function SignupScreen({
+export default function EmailVerifyScreen({
   navigation,
-}: NativeStackScreenProps<AuthStackParamList, 'SignupScreen'>) {
-  const [username, setUsername] = useState<string>();
+  route,
+}: NativeStackScreenProps<AuthStackParamList, 'EmailVerifyScreen'>) {
+  const { username, password } = route.params;
+  const [email, setEmail] = useState<string>();
   const [progress, setProgress] = useState(0);
   const [errorMessage, setErrorMessage] = useState<boolean>(false);
 
   useEffect(() => {
-    if (username?.length! > 3) {
-      setProgress(0.25);
+    if (email?.length! > 1) {
+      setProgress(0.75);
     } else {
-      setProgress(0);
+      setProgress(0.5);
     }
-  }, [username]);
+  }, [email]);
 
   const handleContinue = async () => {
     try {
-      const response = await checkUsernameAvailability(username!);
+      console.log('Checking email availability for:', email);
+      const response = await checkEmailAvailability(email!);
       if (response.success) {
-        navigation.navigate('CreatePasswordScreen', { username: username });
+        navigation.navigate('OptVerifyScreen', {
+          username: username,
+          password: password,
+          mail: email,
+        });
+        console.log('Email is available:', email);
       } else {
         setErrorMessage(true);
       }
     } catch (error) {
-      console.error('Username check failed:', error);
+      console.error('email check failed:', error);
     }
   };
 
@@ -59,39 +70,37 @@ export default function SignupScreen({
           unfilledColor="#E1D7F2"
           borderWidth={0}
         />
-        <Text style={styles.title}>Enter your username</Text>
+        <Text style={styles.title}>
+          We'll send you a confirmation code to verify your account.
+        </Text>
         <View style={{ justifyContent: 'center', flex: 1, marginBottom: 100 }}>
           <View style={styles.textInput}>
             <View style={styles.input}>
-              <Text style={styles.tag}>@</Text>
               <TextInput
-                placeholder="username"
+                placeholder="E-mail address"
                 placeholderTextColor={'#C5C5C5'}
                 style={styles.inputText}
-                value={username}
+                value={email}
                 autoCapitalize="none"
-                onChangeText={text => setUsername(text.toLowerCase())}
+                onChangeText={text => setEmail(text.toLowerCase())}
               />
             </View>
           </View>
-          <Text style={styles.descText}>
-            This is how you will look in the app
-          </Text>
         </View>
         <TouchableOpacity
           onPress={handleContinue}
-          disabled={!username || username.length < 4}
+          disabled={!email || email.length < 1}
           style={[
             styles.continueButton,
-            (!username || username.length < 4) && { opacity: 0.5 },
+            (!email || email.length < 1) && { opacity: 0.5 },
           ]}
         >
           <Text style={[styles.continueText]}>CONTINUE</Text>
         </TouchableOpacity>
       </SafeAreaView>
       <ModalComponent
-        title="Invalid Username"
-        description="Username is already used or contains invalid characters. Please try again."
+        title="Invalid E-mail Address"
+        description="E-mail address is already used or contains invalid characters. Please try again."
         buttonText="TRY AGAIN"
         isModalVisible={errorMessage}
         setModalVisible={setErrorMessage}

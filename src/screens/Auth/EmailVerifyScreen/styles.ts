@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 20,
     color: Colors.Black,
+    marginHorizontal: 35,
   },
   textInput: {
     borderBottomWidth: 2,
@@ -23,7 +24,6 @@ export const styles = StyleSheet.create({
   input: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
   },
   tag: {
     color: Colors.Black,
@@ -32,13 +32,6 @@ export const styles = StyleSheet.create({
   inputText: {
     fontSize: 14,
     color: Colors.Black,
-  },
-  descText: {
-    textAlign: 'center',
-    color: '#B3AABC',
-    marginTop: 15,
-    fontSize: 14,
-    fontWeight: '500',
   },
   continueButton: {
     backgroundColor: Colors.Primary,

@@ -31,7 +31,7 @@ export default function LoginScreen({
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'} // iOS ve Android farklı
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <SafeAreaView style={styles.flex}>
         <Progress.Bar
@@ -60,7 +60,9 @@ export default function LoginScreen({
           </View>
         </View>
         <TouchableOpacity
-          onPress={() => navigation.navigate('PasswordScreen')}
+          onPress={() =>
+            navigation.navigate('PasswordScreen', { username: username })
+          }
           disabled={!username || username.length < 4}
           style={[
             styles.continueButton,

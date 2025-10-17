@@ -9,34 +9,31 @@ import { styles } from './styles';
 import { login } from '../../../api/auth';
 import ModalComponent from '../../../components/ModalComponent';
 
-export default function PasswordScreen({
+export default function CreatePasswordScreen({
   navigation,
   route,
-}: NativeStackScreenProps<AuthStackParamList, 'PasswordScreen'>) {
+}: NativeStackScreenProps<AuthStackParamList, 'CreatePasswordScreen'>) {
   const { username } = route.params;
   const [password, setPassword] = useState<string>();
-  const [progress, setProgress] = useState(0.5);
+  const [progress, setProgress] = useState(0.25);
   const [errorMessage, setErrorMessage] = useState<boolean>(false);
 
   useEffect(() => {
-    if (password?.length! > 5) {
-      setProgress(1);
-    } else {
+    if (password?.length! > 0) {
       setProgress(0.5);
+    } else {
+      setProgress(0.25);
     }
   }, [password]);
 
-  const handleLogin = async () => {
-    try {
-      const response = await login(username!, password!);
-
-      if (response.success) {
-        setErrorMessage(false);
-      } else {
-        setErrorMessage(true);
-      }
-    } catch (error) {
-      console.error('Login failed:', error);
+  const handleCheckPassword = () => {
+    if (password && password.length >= 6) {
+      navigation.navigate('EmailVerifyScreen', {
+        username: username,
+        password: password,
+      });
+    } else {
+      setErrorMessage(true);
     }
   };
 
@@ -68,17 +65,18 @@ export default function PasswordScreen({
         </View>
       </View>
       <TouchableOpacity
-        onPress={handleLogin}
-        disabled={!password || password.length < 6}
+        onPress={handleCheckPassword}
+        disabled={!password || password.length < 1}
         style={[
           styles.continueButton,
-          (!password || password.length < 6) && { opacity: 0.5 },
+          (!password || password.length < 1) && { opacity: 0.5 },
         ]}
       >
         <Text style={[styles.continueText]}>CONTINUE</Text>
       </TouchableOpacity>
       <ModalComponent
-        title="Username or password is incorrect, please try again."
+        title="Invalid Password"
+        description="Invalid password, please create a password with at least 6 characters."
         buttonText="TRY AGAIN"
         isModalVisible={errorMessage}
         setModalVisible={setErrorMessage}
