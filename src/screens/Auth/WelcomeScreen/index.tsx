@@ -32,7 +32,7 @@ export default function WelcomeScreen({
         >
           <Text style={styles.signBtnText}>SIGN UP</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('SignupScreen')}>
           <Text style={styles.loginText}>SIGN IN</Text>
         </TouchableOpacity>
       </View>

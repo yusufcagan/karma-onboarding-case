@@ -5,6 +5,7 @@ import WelcomeScreen from '../screens/Auth/WelcomeScreen';
 import LoginScreen from '../screens/Auth/LoginScreen';
 import SignupScreen from '../screens/Auth/SignupScreen';
 import { AuthStackParamList } from '../../RootStackParamList';
+import PasswordScreen from '../screens/Auth/PasswordScreen';
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 export default function AuthStackNavigation() {
@@ -12,6 +13,7 @@ export default function AuthStackNavigation() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
+      <Stack.Screen name="PasswordScreen" component={PasswordScreen} />
       <Stack.Screen name="SignupScreen" component={SignupScreen} />
     </Stack.Navigator>
   );
