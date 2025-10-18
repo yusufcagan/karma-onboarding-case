@@ -163,7 +163,9 @@ export default function HomeScreen({
           </TouchableOpacity>
           <Text style={styles.resultTitle}>Results</Text>
           <FlatList
+            scrollEnabled={false}
             data={getImageData}
+            keyExtractor={(item, index) => item?._id ?? index.toString()}
             numColumns={2}
             renderItem={({ item }) => (
               <Image source={{ uri: item.url }} style={styles.resultImage} />

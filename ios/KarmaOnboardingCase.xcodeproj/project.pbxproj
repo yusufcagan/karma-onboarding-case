@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C80B921A6F3F58F76C31292 /* libPods-KarmaOnboardingCase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-KarmaOnboardingCase.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		22E4846F6A2D4AA7B04265F5 /* SFPRODISPLAYMEDIUM.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 6FE14306D0D5411D8E58EB72 /* SFPRODISPLAYMEDIUM.OTF */; };
 		4210C4BB820D41958ECD3BFA /* SFPRODISPLAYREGULAR.OTF in Resources */ = {isa = PBXBuildFile; fileRef = C4B2EA79402C4C1E8AD4407F /* SFPRODISPLAYREGULAR.OTF */; };
+		6301D1D687B61DB3431AB7EF /* libPods-KarmaOnboardingCase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96F99FCF553D7D0046BB7E37 /* libPods-KarmaOnboardingCase.a */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		7827393C657A4E8BAA30D7D9 /* SFPRODISPLAYSEMIBOLDITALIC.OTF in Resources */ = {isa = PBXBuildFile; fileRef = FA4442F9919840D2A58DFC27 /* SFPRODISPLAYSEMIBOLDITALIC.OTF */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
@@ -23,12 +23,12 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = KarmaOnboardingCase/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = KarmaOnboardingCase/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = KarmaOnboardingCase/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		3B4392A12AC88292D35C810B /* Pods-KarmaOnboardingCase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KarmaOnboardingCase.debug.xcconfig"; path = "Target Support Files/Pods-KarmaOnboardingCase/Pods-KarmaOnboardingCase.debug.xcconfig"; sourceTree = "<group>"; };
-		5709B34CF0A7D63546082F79 /* Pods-KarmaOnboardingCase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KarmaOnboardingCase.release.xcconfig"; path = "Target Support Files/Pods-KarmaOnboardingCase/Pods-KarmaOnboardingCase.release.xcconfig"; sourceTree = "<group>"; };
-		5DCACB8F33CDC322A6C60F78 /* libPods-KarmaOnboardingCase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KarmaOnboardingCase.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FE14306D0D5411D8E58EB72 /* SFPRODISPLAYMEDIUM.OTF */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = SFPRODISPLAYMEDIUM.OTF; path = ../assets/fonts/SFPRODISPLAYMEDIUM.OTF; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = KarmaOnboardingCase/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = KarmaOnboardingCase/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		96F99FCF553D7D0046BB7E37 /* libPods-KarmaOnboardingCase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KarmaOnboardingCase.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		990B9BECEA82C3B80C888FFC /* Pods-KarmaOnboardingCase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KarmaOnboardingCase.debug.xcconfig"; path = "Target Support Files/Pods-KarmaOnboardingCase/Pods-KarmaOnboardingCase.debug.xcconfig"; sourceTree = "<group>"; };
+		9FA7194B214FE326BFF58758 /* Pods-KarmaOnboardingCase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KarmaOnboardingCase.release.xcconfig"; path = "Target Support Files/Pods-KarmaOnboardingCase/Pods-KarmaOnboardingCase.release.xcconfig"; sourceTree = "<group>"; };
 		C4B2EA79402C4C1E8AD4407F /* SFPRODISPLAYREGULAR.OTF */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = SFPRODISPLAYREGULAR.OTF; path = ../assets/fonts/SFPRODISPLAYREGULAR.OTF; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F6FD622B4D404943B4141D07 /* SFPRODISPLAYBOLD.OTF */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = SFPRODISPLAYBOLD.OTF; path = ../assets/fonts/SFPRODISPLAYBOLD.OTF; sourceTree = "<group>"; };
@@ -40,7 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C80B921A6F3F58F76C31292 /* libPods-KarmaOnboardingCase.a in Frameworks */,
+				6301D1D687B61DB3431AB7EF /* libPods-KarmaOnboardingCase.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,7 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5DCACB8F33CDC322A6C60F78 /* libPods-KarmaOnboardingCase.a */,
+				96F99FCF553D7D0046BB7E37 /* libPods-KarmaOnboardingCase.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -101,8 +101,8 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3B4392A12AC88292D35C810B /* Pods-KarmaOnboardingCase.debug.xcconfig */,
-				5709B34CF0A7D63546082F79 /* Pods-KarmaOnboardingCase.release.xcconfig */,
+				990B9BECEA82C3B80C888FFC /* Pods-KarmaOnboardingCase.debug.xcconfig */,
+				9FA7194B214FE326BFF58758 /* Pods-KarmaOnboardingCase.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -126,13 +126,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "KarmaOnboardingCase" */;
 			buildPhases = (
-				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
+				64E736857A87662B2817DBAF /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
-				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
+				F945E5EF3EEB6AA359F8AAE8 /* [CP] Embed Pods Frameworks */,
+				36D476F6CF5DBB56AF705A2F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -208,24 +208,24 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */ = {
+		36D476F6CF5DBB56AF705A2F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KarmaOnboardingCase/Pods-KarmaOnboardingCase-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-KarmaOnboardingCase/Pods-KarmaOnboardingCase-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KarmaOnboardingCase/Pods-KarmaOnboardingCase-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-KarmaOnboardingCase/Pods-KarmaOnboardingCase-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KarmaOnboardingCase/Pods-KarmaOnboardingCase-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KarmaOnboardingCase/Pods-KarmaOnboardingCase-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */ = {
+		64E736857A87662B2817DBAF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -247,21 +247,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
+		F945E5EF3EEB6AA359F8AAE8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KarmaOnboardingCase/Pods-KarmaOnboardingCase-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-KarmaOnboardingCase/Pods-KarmaOnboardingCase-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KarmaOnboardingCase/Pods-KarmaOnboardingCase-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-KarmaOnboardingCase/Pods-KarmaOnboardingCase-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KarmaOnboardingCase/Pods-KarmaOnboardingCase-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KarmaOnboardingCase/Pods-KarmaOnboardingCase-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -280,7 +280,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-KarmaOnboardingCase.debug.xcconfig */;
+			baseConfigurationReference = 990B9BECEA82C3B80C888FFC /* Pods-KarmaOnboardingCase.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -308,7 +308,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-KarmaOnboardingCase.release.xcconfig */;
+			baseConfigurationReference = 9FA7194B214FE326BFF58758 /* Pods-KarmaOnboardingCase.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
