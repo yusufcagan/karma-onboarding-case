@@ -1,6 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import Colors from '../../../assets/theme/Colors';
 
+const { width, height } = Dimensions.get('window');
 export const styles = StyleSheet.create({
   flex: {
     flex: 1,
@@ -31,6 +32,11 @@ export const styles = StyleSheet.create({
     padding: 10,
     width: 170,
     height: 170,
+  },
+  previewContainer: {
+    width: 170,
+    height: 170,
+    borderRadius: 8,
   },
   cameraOverlay: {
     justifyContent: 'center',
@@ -74,5 +80,11 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '700',
     marginTop: 30,
+  },
+  resultImage: {
+    width: '48%',
+    height: width / 2,
+    borderRadius: 8,
+    margin: 3,
   },
 });

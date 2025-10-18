@@ -13,13 +13,14 @@ import { useAuthStore } from './src/store/authStore';
 import { useEffect } from 'react';
 import BottomNavigation from './src/navigation/BottomNavigation';
 import { useCreditStore } from './src/store/useCreditStore';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 function App() {
   const loadToken = useAuthStore(state => state.loadToken);
   const authToken = useAuthStore(state => state.token);
   const loadCredit = useCreditStore(state => state.loadCredit);
 
-  console.log('Auth Token:', authToken);
+  const queryClient = new QueryClient();
 
   useEffect(() => {
     loadToken();
@@ -27,12 +28,14 @@ function App() {
   }, []);
 
   return (
-    <SafeAreaProvider>
-      <StatusBar />
-      <NavigationContainer>
-        {authToken ? <BottomNavigation /> : <AuthStackNavigation />}
-      </NavigationContainer>
-    </SafeAreaProvider>
+    <QueryClientProvider client={queryClient}>
+      <SafeAreaProvider>
+        <StatusBar />
+        <NavigationContainer>
+          {authToken ? <BottomNavigation /> : <AuthStackNavigation />}
+        </NavigationContainer>
+      </SafeAreaProvider>
+    </QueryClientProvider>
   );
 }
 

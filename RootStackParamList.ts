@@ -16,7 +16,13 @@ export type AuthStackParamList = {
 };
 
 export type BottomTabParamList = {
-  HomeScreen: undefined;
+  HomeStack: undefined;
   DiscoverScreen: undefined;
   ProfileScreen: undefined;
+};
+
+export type HomeStackParamList = {
+  HomeScreen: undefined;
+  GeneratingScreen: { image: string };
+  ResultScreen: { image: string };
 };
