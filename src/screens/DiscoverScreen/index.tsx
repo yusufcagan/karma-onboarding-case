@@ -1,12 +1,171 @@
-import { View, Text } from 'react-native';
-import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import MapView, { Marker } from 'react-native-maps';
+import { useQuery } from '@tanstack/react-query';
+import { getFriend } from '../../api/friend';
+import {
+  StyleSheet,
+  Image,
+  View,
+  Text,
+  TouchableOpacity,
+  Modal,
+} from 'react-native';
+import React, { useState } from 'react';
+import Header from '../../components/Header';
+import { explore } from '../../api/explore';
+import Colors from '../../../assets/theme/Colors';
 import { styles } from './styles';
+import LinearGradient from 'react-native-linear-gradient';
+import FilterIcon from '../../assets/icon/filter-icon';
+import Slider from '@react-native-community/slider';
+import CloseIcon from '../../assets/icon/close-icon';
+import { useCurrentLocation } from '../../hooks/useCurrentLocation';
 
 export default function DiscoverScreen() {
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [distance, setDistance] = useState(80);
+  const { location, loading, refresh } = useCurrentLocation();
+
+  const { data: getExplore } = useQuery({
+    queryKey: ['getExplore', distance],
+    queryFn: () => explore(distance, 37.7749, -122.4194),
+  });
+
+  const SLIDER_WIDTH = 300;
+  const thumbPosition = (distance / 100) * SLIDER_WIDTH - 12;
+
+  const friends = getExplore?.data || [];
+
+  const getTimeAgo = (createdAt: string) => {
+    const now = new Date();
+    const created = new Date(createdAt);
+    const diffMs = now.getTime() - created.getTime();
+
+    const minutes = Math.floor(diffMs / (1000 * 60));
+    const hours = Math.floor(diffMs / (1000 * 60 * 60));
+    const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+    if (minutes < 1) return 'just now';
+    if (minutes < 60) return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+    if (hours < 24) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+    return `${days} day${days > 1 ? 's' : ''} ago`;
+  };
+
   return (
-    <SafeAreaView style={styles.flex}>
-      <Text>DiscoverScreen</Text>
+    <SafeAreaView style={styles.flex} edges={['top']}>
+      <Header />
+      <View style={{ flex: 1, marginTop: 10 }}>
+        <MapView
+          style={{ flex: 1 }}
+          initialRegion={{
+            latitude: location?.latitude!,
+            longitude: location?.longitude!,
+            latitudeDelta: 0.5,
+            longitudeDelta: 0.5,
+          }}
+        >
+          {friends.map((friend: any) => (
+            <Marker
+              key={friend._id}
+              coordinate={{
+                latitude: friend.latitude,
+                longitude: friend.longitude,
+              }}
+            >
+              <View style={styles.markerContainer}>
+                <View style={styles.bubble}>
+                  <View>
+                    <Text style={styles.username}>@{friend.username}</Text>
+                    <Text style={styles.time}>
+                      {getTimeAgo(friend.createdAt)}
+                    </Text>
+                  </View>
+                  <View style={styles.emthyView} />
+                  {friend.url && (
+                    <View style={styles.avatarOverlay}>
+                      <Image
+                        source={{ uri: friend.url }}
+                        style={styles.avatar}
+                      />
+                    </View>
+                  )}
+                </View>
+                <View style={styles.pointer} />
+              </View>
+            </Marker>
+          ))}
+        </MapView>
+        <LinearGradient
+          colors={[
+            'rgba(255,255,255,0.95)',
+            'rgba(255,255,255,0)',
+            'transparent',
+          ]}
+          start={{ x: 0.5, y: 0 }}
+          end={{ x: 0.5, y: 1 }}
+          style={styles.mapOverlay}
+        />
+        <TouchableOpacity
+          onPress={() => setModalVisible(!isModalVisible)}
+          style={[
+            styles.filterBtn,
+            isModalVisible && { backgroundColor: Colors.Primary },
+          ]}
+        >
+          {isModalVisible ? (
+            <CloseIcon width={20} />
+          ) : (
+            <FilterIcon width={25} />
+          )}
+        </TouchableOpacity>
+        {isModalVisible && (
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>Filter</Text>
+            <Text style={styles.subTitle}>
+              Filter to see results close to you
+            </Text>
+
+            <View style={styles.sliderLabels}>
+              <Text style={styles.labelText}>0 km</Text>
+              <Text style={styles.labelText}>100 km</Text>
+            </View>
+
+            <View style={{ position: 'relative' }}>
+              <Slider
+                style={{ width: SLIDER_WIDTH, height: 10 }}
+                minimumValue={0}
+                maximumValue={100}
+                step={1}
+                minimumTrackTintColor={Colors.Primary}
+                maximumTrackTintColor="#d3d3d3"
+                thumbTintColor={Colors.Primary}
+                value={distance}
+                // onValueChange={setDistance}
+                onSlidingComplete={setDistance}
+              />
+
+              <Text
+                style={{
+                  position: 'absolute',
+                  top: 20,
+                  left: thumbPosition,
+                  color: Colors.Black,
+                  fontWeight: '600',
+                }}
+              >
+                {Math.round(distance)} km
+              </Text>
+            </View>
+
+            <TouchableOpacity
+              style={styles.applyButton}
+              onPress={() => setModalVisible(false)}
+            >
+              <Text style={styles.applyButtonText}>See Results</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+      </View>
     </SafeAreaView>
   );
 }

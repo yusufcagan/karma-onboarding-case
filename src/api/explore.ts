@@ -4,9 +4,9 @@ import apiClient from './apiClient';
 const token = useAuthStore.getState().token;
 
 export const explore = async (
-  range: string,
-  latitude: string,
-  longitude: string,
+  range: number,
+  latitude: number,
+  longitude: number,
 ) => {
   try {
     const response = await apiClient.post(

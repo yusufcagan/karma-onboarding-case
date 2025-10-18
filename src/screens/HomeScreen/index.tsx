@@ -23,23 +23,18 @@ import { getImage, uploadImage } from '../../api/image';
 import { useQuery } from '@tanstack/react-query';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { HomeStackParamList } from '../../../RootStackParamList';
+import { useCurrentLocation } from '../../hooks/useCurrentLocation';
 
 export default function HomeScreen({
   navigation,
 }: NativeStackScreenProps<HomeStackParamList, 'HomeScreen'>) {
   const [photo, setPhoto] = useState<string | null>(null);
   const [prompt, setPrompt] = useState<string>();
-  const [location, setLocation] = useState<{
-    latitude: number;
-    longitude: number;
-  } | null>(null);
 
   const { data: getImageData } = useQuery({
     queryKey: ['getImage'],
     queryFn: getImage,
   });
-
-  console.log('get:', getImageData);
 
   const handleImagePick = async () => {
     try {
@@ -72,9 +67,9 @@ export default function HomeScreen({
     try {
       const res = await uploadImage(
         photo!,
-        '37.774929',
-        '-122.419416',
-        'summer',
+        location?.latitude!,
+        location?.longitude!,
+        prompt!,
       );
       console.log('Upload response:', res);
       if (res.success) {
@@ -85,45 +80,7 @@ export default function HomeScreen({
     }
   };
 
-  const getCurrentLocation = () => {
-    Geolocation.getCurrentPosition(
-      position => {
-        const { latitude, longitude } = position.coords;
-        setLocation({ latitude, longitude });
-        console.log('Konum:', latitude, longitude);
-      },
-      error => {
-        console.log('Konum hatası:', error.message);
-        Alert.alert('Konum hatası', error.message);
-      },
-      { enableHighAccuracy: false, timeout: 5000, maximumAge: 0 },
-    );
-  };
-
-  const requestPermission = async () => {
-    if (Platform.OS === 'ios') {
-      const status = await request(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE);
-      if (status === RESULTS.GRANTED) getCurrentLocation();
-      // else Alert.alert('Konum izni verilmedi.');
-    } else {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-        {
-          title: 'Konum izni gerekli',
-          message:
-            'Uygulama doğru çalışmak için konum erişimine ihtiyaç duyar.',
-          buttonPositive: 'İzin ver',
-          buttonNegative: 'Reddet',
-        },
-      );
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) getCurrentLocation();
-      // else Alert.alert('Konum izni verilmedi.');
-    }
-  };
-
-  useEffect(() => {
-    requestPermission();
-  }, []);
+  const { location, loading, refresh } = useCurrentLocation();
 
   return (
     <SafeAreaView style={styles.flex}>
@@ -157,7 +114,8 @@ export default function HomeScreen({
           />
           <TouchableOpacity
             onPress={generateImage}
-            style={[styles.generateButton, true && { opacity: 0.5 }]}
+            disabled={!prompt}
+            style={[styles.generateButton, !prompt && { opacity: 0.5 }]}
           >
             <Text style={styles.generateButtonText}>Generate (1 Credit)</Text>
           </TouchableOpacity>

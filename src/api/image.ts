@@ -5,8 +5,8 @@ const token = useAuthStore.getState().token;
 
 export const uploadImage = async (
   imageUri: string,
-  latitude: string,
-  longitude: string,
+  latitude: number,
+  longitude: number,
   prompt: string,
 ) => {
   try {
