@@ -8,6 +8,7 @@ import { AuthStackParamList } from '../../../../RootStackParamList';
 import { styles } from './styles';
 import { login } from '../../../api/auth';
 import ModalComponent from '../../../components/ModalComponent';
+import { useAuthStore } from '../../../store/authStore';
 
 export default function PasswordScreen({
   navigation,
@@ -31,6 +32,8 @@ export default function PasswordScreen({
       const response = await login(username!, password!);
 
       if (response.success) {
+        const setToken = useAuthStore.getState().setToken;
+        setToken(response.data.token);
         setErrorMessage(false);
       } else {
         setErrorMessage(true);

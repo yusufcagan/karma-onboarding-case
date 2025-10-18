@@ -11,6 +11,7 @@ import AuthStackNavigation from './src/navigation/AuthStackNavigation';
 import { NavigationContainer } from '@react-navigation/native';
 import { useAuthStore } from './src/store/authStore';
 import { useEffect } from 'react';
+import BottomNavigation from './src/navigation/BottomNavigation';
 
 function App() {
   const loadToken = useAuthStore(state => state.loadToken);
@@ -26,7 +27,7 @@ function App() {
     <SafeAreaProvider>
       <StatusBar />
       <NavigationContainer>
-        {authToken ? <AuthStackNavigation /> : <AuthStackNavigation />}
+        {authToken ? <BottomNavigation /> : <AuthStackNavigation />}
       </NavigationContainer>
     </SafeAreaProvider>
   );

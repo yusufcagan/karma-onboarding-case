@@ -14,3 +14,9 @@ export type AuthStackParamList = {
     mail: string | undefined;
   };
 };
+
+export type BottomTabParamList = {
+  HomeScreen: undefined;
+  DiscoverScreen: undefined;
+  ProfileScreen: undefined;
+};
