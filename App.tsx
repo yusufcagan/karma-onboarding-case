@@ -12,15 +12,18 @@ import { NavigationContainer } from '@react-navigation/native';
 import { useAuthStore } from './src/store/authStore';
 import { useEffect } from 'react';
 import BottomNavigation from './src/navigation/BottomNavigation';
+import { useCreditStore } from './src/store/useCreditStore';
 
 function App() {
   const loadToken = useAuthStore(state => state.loadToken);
   const authToken = useAuthStore(state => state.token);
+  const loadCredit = useCreditStore(state => state.loadCredit);
 
   console.log('Auth Token:', authToken);
 
   useEffect(() => {
     loadToken();
+    loadCredit();
   }, []);
 
   return (

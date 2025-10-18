@@ -31,7 +31,6 @@ export default function OptVerifyScreen({
 
   const handleVerifyCode = async () => {
     if (otpCode === '1234') {
-      console.log('code verified');
       const response = await register(username!, password!, mail!, otpCode);
       if (response.success) {
         const setToken = useAuthStore.getState().setToken;
