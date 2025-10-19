@@ -83,7 +83,7 @@ export default function HomeScreen({
   const { location, loading, refresh } = useCurrentLocation();
 
   return (
-    <SafeAreaView style={styles.flex}>
+    <SafeAreaView style={styles.flex} edges={['top']}>
       <StatusBar />
       <Header />
       <ScrollView>

@@ -74,19 +74,21 @@ export const styles = StyleSheet.create({
   },
   userCard: {
     backgroundColor: Colors.White,
-    borderRadius: 10,
+    borderRadius: 15,
     flexDirection: 'row',
     paddingHorizontal: 15,
     paddingVertical: 15,
     justifyContent: 'space-between',
+    borderWidth: 1,
+    borderColor: '#0000001A',
   },
   userImage: {
-    width: 25,
-    height: 25,
+    width: 30,
+    height: 30,
     borderRadius: 15,
   },
   userTextContainer: {
-    marginLeft: 10,
+    marginLeft: 20,
   },
   userCardUsername: {
     fontSize: 14,
@@ -97,5 +99,6 @@ export const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '500',
     color: Colors.Gray,
+    marginTop: 2,
   },
 });

@@ -6,8 +6,12 @@ import PenIcon from '../../assets/icon/pen-icon';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { getFriend } from '../../api/friend';
 import TrashIcon from '../../assets/icon/trash-icon';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { ProfileStackParamList } from '../../../RootStackParamList';
 
-export default function ProfileScreen() {
+export default function ProfileScreen({
+  navigation,
+}: NativeStackScreenProps<ProfileStackParamList, 'ProfileScreen'>) {
   const { data: getFriendData } = useQuery({
     queryKey: ['getFriendData'],
     queryFn: getFriend,
@@ -32,9 +36,12 @@ export default function ProfileScreen() {
       <View style={styles.header}>
         <View style={styles.row}>
           <Text style={styles.title}>Profile</Text>
-          <View style={styles.settings}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('ProfileEditScreen')}
+            style={styles.settings}
+          >
             <PenIcon width={25} />
-          </View>
+          </TouchableOpacity>
         </View>
         <View style={styles.userContainer}>
           <View style={styles.userIcon} />

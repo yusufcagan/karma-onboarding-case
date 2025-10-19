@@ -3,9 +3,11 @@ import React from 'react';
 import { styles } from './styles/header.styles';
 import SettingsIcon from '../assets/icon/settings-icon';
 import { useCreditStore } from '../store/useCreditStore';
+import { useNavigation } from '@react-navigation/native';
 
 const Header = () => {
   const credit = useCreditStore(state => state.credit);
+  const navigation = useNavigation<any>();
 
   return (
     <View style={styles.hedaerContainer}>
@@ -23,7 +25,7 @@ const Header = () => {
           <Text style={styles.countText}>{credit}</Text>
           <Text style={styles.creditText}>credits</Text>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('SettingsScreen')}>
           <SettingsIcon width={30} height={30} style={{ marginLeft: 5 }} />
         </TouchableOpacity>
       </View>

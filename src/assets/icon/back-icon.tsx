@@ -6,7 +6,7 @@ function BackIcon(props: SvgProps) {
     <Svg width={23} height={40} viewBox="0 0 23 40" fill="none" {...props}>
       <Path
         d="M20 3L3 20l17 17"
-        stroke="#000"
+        stroke={props.color ? props.color : '#000'}
         strokeWidth={5.66667}
         strokeLinecap="round"
         strokeLinejoin="round"

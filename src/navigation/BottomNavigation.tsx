@@ -3,7 +3,9 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
   BottomTabParamList,
+  DiscoverStackParamList,
   HomeStackParamList,
+  ProfileStackParamList,
 } from '../../RootStackParamList';
 import HomeScreen from '../screens/HomeScreen';
 import DiscoverScreen from '../screens/DiscoverScreen';
@@ -16,17 +18,54 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import GeneratingScreen from '../screens/HomeScreen/GeneratingScreen';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import ResultScreen from '../screens/HomeScreen/ResultScreen';
+import ProfileEdit from '../screens/ProfileScreen/ProfileEdit';
+import SettingsScreen from '../screens/ProfileScreen/SettingsScreen';
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 export default function BottomNavigation() {
   const Stack = createNativeStackNavigator<HomeStackParamList>();
+  const ProfStack = createNativeStackNavigator<ProfileStackParamList>();
+  const DisStack = createNativeStackNavigator<DiscoverStackParamList>();
   const HomeStack = () => {
     return (
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="GeneratingScreen" component={GeneratingScreen} />
         <Stack.Screen name="ResultScreen" component={ResultScreen} />
+        <Stack.Screen
+          name="SettingsScreen"
+          component={SettingsScreen}
+          options={{
+            presentation: 'modal',
+            animation: 'slide_from_bottom',
+          }}
+        />
       </Stack.Navigator>
+    );
+  };
+
+  const ProfileStack = () => {
+    return (
+      <ProfStack.Navigator screenOptions={{ headerShown: false }}>
+        <ProfStack.Screen name="ProfileScreen" component={ProfileScreen} />
+        <ProfStack.Screen name="ProfileEditScreen" component={ProfileEdit} />
+      </ProfStack.Navigator>
+    );
+  };
+
+  const DiscoverStack = () => {
+    return (
+      <DisStack.Navigator screenOptions={{ headerShown: false }}>
+        <DisStack.Screen name="DiscoverScreen" component={DiscoverScreen} />
+        <DisStack.Screen
+          name="SettingsScreen"
+          component={SettingsScreen}
+          options={{
+            presentation: 'modal',
+            animation: 'slide_from_bottom',
+          }}
+        />
+      </DisStack.Navigator>
     );
   };
 
@@ -38,7 +77,9 @@ export default function BottomNavigation() {
           const routeName = getFocusedRouteNameFromRoute(route) ?? '';
           if (
             routeName === 'GeneratingScreen' ||
-            routeName === 'ResultScreen'
+            routeName === 'ResultScreen' ||
+            routeName === 'ProfileEditScreen' ||
+            routeName === 'SettingsScreen'
           ) {
             return { display: 'none' };
           }
@@ -64,8 +105,8 @@ export default function BottomNavigation() {
         }}
       />
       <Tab.Screen
-        name="DiscoverScreen"
-        component={DiscoverScreen}
+        name="DiscoverStack"
+        component={DiscoverStack}
         options={{
           title: 'Discover',
           tabBarActiveTintColor: Colors.Primary,
@@ -81,8 +122,8 @@ export default function BottomNavigation() {
         }}
       />
       <Tab.Screen
-        name="ProfileScreen"
-        component={ProfileScreen}
+        name="ProfileStack"
+        component={ProfileStack}
         options={{
           title: 'Profile',
           tabBarActiveTintColor: Colors.Primary,
