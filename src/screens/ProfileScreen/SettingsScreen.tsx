@@ -24,6 +24,7 @@ export default function SettingsScreen() {
 
   const handleDeleteAccount = async () => {
     const response = await deleteUser();
+    removeToken();
     console.log('res:', response);
   };
   return (

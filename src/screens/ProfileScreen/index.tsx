@@ -19,12 +19,15 @@ import ModalComponent from '../../components/ModalComponent';
 import { SceneMap, TabView } from 'react-native-tab-view';
 import Colors from '../../../assets/theme/Colors';
 import AddUserIcon from '../../assets/icon/addUser-icon';
+import { useAuthStore } from '../../store/authStore';
+import UserIcon from '../../assets/icon/user-icon';
 
 export default function ProfileScreen({
   navigation,
 }: NativeStackScreenProps<ProfileStackParamList, 'ProfileScreen'>) {
   const [resquestModal, setRequestModal] = useState<boolean>(false);
   const [selectedUser, setSelectedUser] = useState<any | null>(null);
+  const userData = useAuthStore(state => state.user);
 
   const queryClient = useQueryClient();
 
@@ -60,7 +63,6 @@ export default function ProfileScreen({
 
   const acceptFriendReques = async (friendId: string) => {
     const response = await acceptFriend(friendId);
-    console.log('res:', response);
   };
 
   const FirstRoute = () => {
@@ -166,11 +168,11 @@ export default function ProfileScreen({
           </TouchableOpacity>
         </View>
         <View style={styles.userContainer}>
-          <View style={styles.userIcon} />
+          <UserIcon width={70} height={70} />
           <View style={{ marginLeft: 10 }}>
-            <Text style={styles.username}>@{'username'}</Text>
+            <Text style={styles.username}>@{userData?.username}</Text>
             <View style={styles.mailContainer}>
-              <Text style={styles.mailText}>mail@mail.com</Text>
+              <Text style={styles.mailText}>{userData?.mail}</Text>
             </View>
           </View>
         </View>

@@ -9,6 +9,7 @@ import { styles } from './styles';
 import { login } from '../../../api/auth';
 import ModalComponent from '../../../components/ModalComponent';
 import { useAuthStore } from '../../../store/authStore';
+import { useCreditStore } from '../../../store/useCreditStore';
 
 export default function PasswordScreen({
   navigation,
@@ -32,8 +33,12 @@ export default function PasswordScreen({
       const response = await login(username!, password!);
 
       if (response.success) {
-        const setToken = useAuthStore.getState().setToken;
-        setToken(response.data.token);
+        const { setToken, setUser } = useAuthStore.getState();
+        const { setCredit } = useCreditStore.getState();
+        await setToken(response.data.token);
+        await setUser(response.data.user);
+        await setCredit(response.data.user.credits);
+
         setErrorMessage(false);
       } else {
         setErrorMessage(true);

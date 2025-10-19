@@ -35,13 +35,6 @@ export const styles = StyleSheet.create({
     marginTop: 20,
     alignItems: 'center',
   },
-  userIcon: {
-    height: 70,
-    width: 70,
-    borderRadius: 40,
-    borderWidth: 1,
-    borderColor: '#0000001A',
-  },
   username: {
     fontSize: 18,
     fontWeight: '500',
@@ -91,7 +84,7 @@ export const styles = StyleSheet.create({
     borderRadius: 15,
   },
   userTextContainer: {
-    marginLeft: 20,
+    marginLeft: 10,
   },
   userCardUsername: {
     fontSize: 14,

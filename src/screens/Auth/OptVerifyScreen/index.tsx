@@ -10,6 +10,7 @@ import { login, register } from '../../../api/auth';
 import ModalComponent from '../../../components/ModalComponent';
 import OTPTextView from 'react-native-otp-textinput';
 import { useAuthStore } from '../../../store/authStore';
+import { useCreditStore } from '../../../store/useCreditStore';
 
 export default function OptVerifyScreen({
   navigation,
@@ -31,10 +32,13 @@ export default function OptVerifyScreen({
 
   const handleVerifyCode = async () => {
     if (otpCode === '1234') {
-      const response = await register(username!, password!, mail!, otpCode);
+      const response = await register(mail!, username!, password!, otpCode);
       if (response.success) {
-        const setToken = useAuthStore.getState().setToken;
-        setToken(response.data.token);
+        const { setToken, setUser } = useAuthStore.getState();
+        const { setCredit } = useCreditStore.getState();
+        await setToken(response.data.token);
+        await setUser({ username, mail });
+        await setCredit(response.data.user.credits);
         setSuccessModal(true);
       } else {
         setErrorMessage(true);

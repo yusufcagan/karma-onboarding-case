@@ -56,14 +56,14 @@ export const checkEmailAvailability = async (mail: string) => {
 };
 
 export const register = async (
-  email: string,
+  mail: string,
   username: string,
   password: string,
   code: string,
 ) => {
   try {
     const response = await apiClient.post(`/auth/register`, {
-      email,
+      mail,
       username,
       password,
       code,
