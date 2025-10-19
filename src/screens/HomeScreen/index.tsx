@@ -24,6 +24,7 @@ import { useQuery } from '@tanstack/react-query';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { HomeStackParamList } from '../../../RootStackParamList';
 import { useCurrentLocation } from '../../hooks/useCurrentLocation';
+import { useCreditStore } from '../../store/useCreditStore';
 
 export default function HomeScreen({
   navigation,
@@ -73,6 +74,8 @@ export default function HomeScreen({
       );
       console.log('Upload response:', res);
       if (res.success) {
+        const { setCredit, credit } = useCreditStore.getState();
+        await setCredit(credit - 1);
         navigation.navigate('GeneratingScreen', { image: res.data.image.url });
       }
     } catch (err) {

@@ -54,7 +54,8 @@ export default function ProfileEdit({
         <TouchableOpacity
           disabled={!username || !mail || !password}
           onPress={() => {
-            setUser({ username, mail });
+            const _id = userData?.id;
+            setUser({ username, mail, _id });
             setRequestModal(true);
           }}
           style={[

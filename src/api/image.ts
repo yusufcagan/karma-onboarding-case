@@ -22,7 +22,7 @@ export const uploadImage = async (
     formData.append('longitude', longitude);
     formData.append('prompt', prompt);
 
-    const response = await apiClient.post('image/upload', formData, {
+    const response = await apiClient.post('/image/upload', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${token}`,

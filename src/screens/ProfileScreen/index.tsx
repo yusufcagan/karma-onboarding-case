@@ -108,36 +108,54 @@ export default function ProfileScreen({
       <View style={styles.content}>
         <FlatList
           data={requestFriends}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() => handleRequestModal(item)}
-              style={styles.userCard}
-            >
-              <View style={styles.flexRow}>
-                <Image
-                  source={{ uri: item.profilePic2 }}
-                  style={styles.userImage}
-                />
-                <View style={styles.userTextContainer}>
-                  <Text style={styles.userCardUsername}>@{item.username1}</Text>
-                  <Text style={styles.lastSeen}>
-                    Wants to add you as a friend
-                  </Text>
+          renderItem={({ item }) => {
+            const getRequest = item.user2 === userData.id;
+
+            return (
+              <TouchableOpacity
+                onPress={() => handleRequestModal(item)}
+                style={styles.userCard}
+              >
+                <View style={styles.flexRow}>
+                  <Image
+                    source={{ uri: item.profilePic2 }}
+                    style={styles.userImage}
+                  />
+                  <View style={styles.userTextContainer}>
+                    <Text style={styles.userCardUsername}>
+                      @{item.username1}
+                    </Text>
+                    {getRequest ? (
+                      <Text style={styles.lastSeen}>
+                        Wants to add you as a friend
+                      </Text>
+                    ) : (
+                      <Text style={styles.lastSeen}>
+                        Your request is awaiting a response
+                      </Text>
+                    )}
+                  </View>
                 </View>
-              </View>
-              <View style={styles.flexRow}>
-                <TouchableOpacity
-                  onPress={() => acceptFriendReques(item.user1)}
-                  style={styles.settings}
-                >
-                  <AddUserIcon width={25} />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.settings}>
-                  <TrashIcon width={25} />
-                </TouchableOpacity>
-              </View>
-            </TouchableOpacity>
-          )}
+                <View style={styles.flexRow}>
+                  {getRequest && (
+                    <TouchableOpacity
+                      onPress={() => {
+                        // acceptFriendReques(item.user1);
+                        console.log('sd:', item);
+                      }}
+                      style={styles.settings}
+                    >
+                      <AddUserIcon width={25} />
+                    </TouchableOpacity>
+                  )}
+
+                  <TouchableOpacity style={styles.settings}>
+                    <TrashIcon width={25} />
+                  </TouchableOpacity>
+                </View>
+              </TouchableOpacity>
+            );
+          }}
         />
       </View>
     );

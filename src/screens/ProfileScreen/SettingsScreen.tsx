@@ -24,8 +24,8 @@ export default function SettingsScreen() {
 
   const handleDeleteAccount = async () => {
     const response = await deleteUser();
+    console.log('delete:', response);
     removeToken();
-    console.log('res:', response);
   };
   return (
     <SafeAreaView style={styles.flex} edges={['top']}>

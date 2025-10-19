@@ -21,6 +21,7 @@ export const useAuthStore = create<AuthStore>(set => ({
     const filteredUser = {
       username: user.username,
       mail: user.mail,
+      id: user._id,
     };
 
     await AsyncStorage.setItem('user', JSON.stringify(filteredUser));
