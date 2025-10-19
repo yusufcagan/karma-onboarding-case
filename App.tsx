@@ -14,11 +14,14 @@ import { useEffect } from 'react';
 import BottomNavigation from './src/navigation/BottomNavigation';
 import { useCreditStore } from './src/store/useCreditStore';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import RNBootSplash from 'react-native-bootsplash';
+import PaywallScreen from './src/screens/PaywallScreen';
 
 function App() {
   const loadToken = useAuthStore(state => state.loadToken);
   const authToken = useAuthStore(state => state.token);
   const loadCredit = useCreditStore(state => state.loadCredit);
+  const credit = useCreditStore(state => state.credit);
 
   const queryClient = new QueryClient();
 
@@ -31,8 +34,20 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <SafeAreaProvider>
         <StatusBar />
-        <NavigationContainer>
-          {authToken ? <BottomNavigation /> : <AuthStackNavigation />}
+        <NavigationContainer
+          onReady={() => {
+            RNBootSplash.hide({ fade: true });
+          }}
+        >
+          {authToken ? (
+            credit === 0 ? (
+              <PaywallScreen />
+            ) : (
+              <BottomNavigation />
+            )
+          ) : (
+            <AuthStackNavigation />
+          )}
         </NavigationContainer>
       </SafeAreaProvider>
     </QueryClientProvider>

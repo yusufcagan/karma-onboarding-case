@@ -27,6 +27,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
+    marginLeft: 10,
     borderColor: '#0000001A',
   },
   userContainer: {
@@ -67,6 +68,8 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F3F6FD',
     padding: 20,
+    borderTopWidth: 1,
+    borderTopColor: '#0000001A',
   },
   flexRow: {
     flexDirection: 'row',

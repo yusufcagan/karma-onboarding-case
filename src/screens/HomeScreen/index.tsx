@@ -126,7 +126,17 @@ export default function HomeScreen({
             keyExtractor={(item, index) => item?._id ?? index.toString()}
             numColumns={2}
             renderItem={({ item }) => (
-              <Image source={{ uri: item.url }} style={styles.resultImage} />
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate('ResultScreen', { image: item.url })
+                }
+                style={styles.resultImage}
+              >
+                <Image
+                  source={{ uri: item.url }}
+                  style={[styles.resultImage, { width: '100%' }]}
+                />
+              </TouchableOpacity>
             )}
           />
         </View>

@@ -41,6 +41,15 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 10,
   },
+  miniButton: {
+    backgroundColor: Colors.Primary,
+    width: '48%',
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginTop: 10,
+  },
   modalButtonText: {
     color: Colors.White,
     fontSize: 16,

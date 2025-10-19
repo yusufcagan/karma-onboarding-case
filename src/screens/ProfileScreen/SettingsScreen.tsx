@@ -1,5 +1,11 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import React from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Linking,
+} from 'react-native';
+import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Colors from '../../../assets/theme/Colors';
 import CicleUser from '../../assets/icon/circle-user-icon';
@@ -8,8 +14,18 @@ import RefreshIcon from '../../assets/icon/resfresh-icon';
 import GlobalIcon from '../../assets/icon/global-icon';
 import ExitIcon from '../../assets/icon/exit-icon';
 import TrashIcon2 from '../../assets/icon/trash-icon2';
+import { deleteUser } from '../../api/user';
+import ModalComponent from '../../components/ModalComponent';
+import { useAuthStore } from '../../store/authStore';
 
 export default function SettingsScreen() {
+  const [resquestModal, setRequestModal] = useState<boolean>(false);
+  const removeToken = useAuthStore(state => state.removeToken);
+
+  const handleDeleteAccount = async () => {
+    const response = await deleteUser();
+    console.log('res:', response);
+  };
   return (
     <SafeAreaView style={styles.flex} edges={['top']}>
       <Text style={styles.title}>Membership</Text>
@@ -68,7 +84,10 @@ export default function SettingsScreen() {
       </View>
       <Text style={styles.title}>Legal</Text>
       <View style={styles.content}>
-        <TouchableOpacity style={styles.sectionButton}>
+        <TouchableOpacity
+          onPress={() => Linking.openURL('https://www.google.com/')}
+          style={styles.sectionButton}
+        >
           <View style={styles.row}>
             <GlobalIcon width={20} height={20} />
             <Text style={styles.sectionText}>Privacy Policy</Text>
@@ -80,7 +99,10 @@ export default function SettingsScreen() {
             style={{ transform: [{ rotate: '180deg' }] }}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.sectionButton}>
+        <TouchableOpacity
+          onPress={() => Linking.openURL('https://www.google.com/')}
+          style={styles.sectionButton}
+        >
           <View style={styles.row}>
             <GlobalIcon width={20} height={20} />
             <Text style={styles.sectionText}>Terms of Service</Text>
@@ -95,7 +117,7 @@ export default function SettingsScreen() {
       </View>
       <Text style={styles.title}>Account</Text>
       <View style={styles.content}>
-        <TouchableOpacity style={styles.sectionButton}>
+        <TouchableOpacity onPress={removeToken} style={styles.sectionButton}>
           <View style={styles.row}>
             <ExitIcon width={20} height={20} />
             <Text style={styles.sectionText}>Log Out</Text>
@@ -107,7 +129,10 @@ export default function SettingsScreen() {
             style={{ transform: [{ rotate: '180deg' }] }}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.sectionButton}>
+        <TouchableOpacity
+          onPress={() => setRequestModal(true)}
+          style={styles.sectionButton}
+        >
           <View style={styles.row}>
             <TrashIcon2 width={20} height={20} />
             <Text style={styles.sectionText}>Delete Account</Text>
@@ -122,6 +147,17 @@ export default function SettingsScreen() {
       </View>
 
       <Text style={styles.footerText}>2025 Karma.AI</Text>
+      <ModalComponent
+        isModalVisible={resquestModal}
+        setModalVisible={setRequestModal}
+        title="Send Friend Request"
+        description="Are you sure you want to add @username as a friend?"
+        buttonText="No"
+        buttonText2="Yes"
+        onpress={() => setRequestModal(false)}
+        onpress2={handleDeleteAccount}
+        multiButton
+      />
     </SafeAreaView>
   );
 }

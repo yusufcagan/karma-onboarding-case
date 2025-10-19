@@ -1,15 +1,7 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MapView, { Marker } from 'react-native-maps';
 import { useQuery } from '@tanstack/react-query';
-import { getFriend } from '../../api/friend';
-import {
-  StyleSheet,
-  Image,
-  View,
-  Text,
-  TouchableOpacity,
-  Modal,
-} from 'react-native';
+import { Image, View, Text, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import Header from '../../components/Header';
 import { explore } from '../../api/explore';
@@ -20,10 +12,15 @@ import FilterIcon from '../../assets/icon/filter-icon';
 import Slider from '@react-native-community/slider';
 import CloseIcon from '../../assets/icon/close-icon';
 import { useCurrentLocation } from '../../hooks/useCurrentLocation';
+import ModalComponent from '../../components/ModalComponent';
+import { acceptFriend, requestFriend } from '../../api/friend';
 
 export default function DiscoverScreen() {
   const [isModalVisible, setModalVisible] = useState(false);
   const [distance, setDistance] = useState(80);
+  const [resquestModal, setRequestModal] = useState<boolean>(false);
+  const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
+
   const { location, loading, refresh } = useCurrentLocation();
 
   const { data: getExplore } = useQuery({
@@ -51,15 +48,29 @@ export default function DiscoverScreen() {
     return `${days} day${days > 1 ? 's' : ''} ago`;
   };
 
+  const handleAcceptFriend = async (selectedUserId: string) => {
+    try {
+      const response = await requestFriend(selectedUserId);
+      console.log('res:', response);
+    } catch (err: any) {
+      console.error(err);
+    }
+  };
+
+  const handleRequestModal = (id: string) => {
+    setSelectedUserId(id);
+    setRequestModal(true);
+  };
+
   return (
     <SafeAreaView style={styles.flex} edges={['top']}>
       <Header />
       <View style={{ flex: 1, marginTop: 10 }}>
         <MapView
           style={{ flex: 1 }}
-          initialRegion={{
-            latitude: location?.latitude!,
-            longitude: location?.longitude!,
+          region={{
+            latitude: location?.latitude ?? 37.7749,
+            longitude: location?.longitude ?? -122.4194,
             latitudeDelta: 0.5,
             longitudeDelta: 0.5,
           }}
@@ -72,7 +83,10 @@ export default function DiscoverScreen() {
                 longitude: friend.longitude,
               }}
             >
-              <View style={styles.markerContainer}>
+              <TouchableOpacity
+                onPress={() => handleRequestModal(friend._id)}
+                style={styles.markerContainer}
+              >
                 <View style={styles.bubble}>
                   <View>
                     <Text style={styles.username}>@{friend.username}</Text>
@@ -91,7 +105,7 @@ export default function DiscoverScreen() {
                   )}
                 </View>
                 <View style={styles.pointer} />
-              </View>
+              </TouchableOpacity>
             </Marker>
           ))}
         </MapView>
@@ -140,7 +154,6 @@ export default function DiscoverScreen() {
                 maximumTrackTintColor="#d3d3d3"
                 thumbTintColor={Colors.Primary}
                 value={distance}
-                // onValueChange={setDistance}
                 onSlidingComplete={setDistance}
               />
 
@@ -164,6 +177,19 @@ export default function DiscoverScreen() {
               <Text style={styles.applyButtonText}>See Results</Text>
             </TouchableOpacity>
           </View>
+        )}
+        {resquestModal && (
+          <ModalComponent
+            isModalVisible={resquestModal}
+            setModalVisible={setRequestModal}
+            title="Send Friend Request"
+            description="Are you sure you want to add @username as a friend?"
+            buttonText="No"
+            buttonText2="Yes"
+            onpress={() => setRequestModal(false)}
+            onpress2={() => handleAcceptFriend(selectedUserId!)}
+            multiButton
+          />
         )}
       </View>
     </SafeAreaView>
