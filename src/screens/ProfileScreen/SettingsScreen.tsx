@@ -4,6 +4,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Linking,
+  Platform,
 } from 'react-native';
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -26,6 +27,38 @@ export default function SettingsScreen() {
     const response = await deleteUser();
     console.log('delete:', response);
     removeToken();
+  };
+
+  const handleContactPress = () => {
+    const email = 'support@karmaapp.com'; // kendi destek mail adresin
+    const subject = 'Support Request';
+    const body = 'Hello, I need help with...';
+    const mailto = `mailto:${email}?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(body)}`;
+
+    Linking.openURL(mailto).catch(err =>
+      console.error('Error opening mail app', err),
+    );
+  };
+
+  const handleRateUs = async () => {
+    const appStoreUrl =
+      'itms-apps://apps.apple.com/us/app/karma-astro-dating-match/id1560169930';
+    const playStoreUrl = 'market://details?id=com.karma.app';
+
+    const url = Platform.OS === 'ios' ? appStoreUrl : playStoreUrl;
+
+    try {
+      const supported = await Linking.canOpenURL(url);
+      if (supported) {
+        await Linking.openURL(url);
+      } else {
+        console.warn("Can't handle rate URL");
+      }
+    } catch (error) {
+      console.error('Error opening store:', error);
+    }
   };
   return (
     <SafeAreaView style={styles.flex} edges={['top']}>
@@ -58,7 +91,10 @@ export default function SettingsScreen() {
       </View>
       <Text style={styles.title}>Support</Text>
       <View style={styles.content}>
-        <TouchableOpacity style={styles.sectionButton}>
+        <TouchableOpacity
+          onPress={handleContactPress}
+          style={styles.sectionButton}
+        >
           <View style={styles.row}>
             <CicleUser width={20} height={20} />
             <Text style={styles.sectionText}>Contact us</Text>
@@ -70,7 +106,7 @@ export default function SettingsScreen() {
             style={{ transform: [{ rotate: '180deg' }] }}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.sectionButton}>
+        <TouchableOpacity onPress={handleRateUs} style={styles.sectionButton}>
           <View style={styles.row}>
             <RefreshIcon width={20} height={20} />
             <Text style={styles.sectionText}>Rate us</Text>

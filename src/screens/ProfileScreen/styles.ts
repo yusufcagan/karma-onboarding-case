@@ -77,6 +77,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     borderWidth: 1,
     borderColor: '#0000001A',
+    marginTop: 10,
   },
   userImage: {
     width: 30,

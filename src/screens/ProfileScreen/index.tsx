@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Image,
   useWindowDimensions,
+  Alert,
 } from 'react-native';
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -52,8 +53,14 @@ export default function ProfileScreen({
   };
 
   const handleDeleteFriend = async () => {
-    const response = await deleteFriend(selectedUser.user1);
-    queryClient.invalidateQueries({ queryKey: ['getFriendData'] });
+    const response = await deleteFriend(selectedUser._id);
+    console.log('re:', response);
+    if (response.success) {
+      setRequestModal(false);
+      queryClient.invalidateQueries({ queryKey: ['getFriendData'] });
+    } else {
+      Alert.alert(response.message);
+    }
   };
 
   const handleRequestModal = (item: any) => {
@@ -74,10 +81,7 @@ export default function ProfileScreen({
         <FlatList
           data={friends}
           renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() => handleRequestModal(item)}
-              style={styles.userCard}
-            >
+            <View style={styles.userCard}>
               <View style={styles.flexRow}>
                 <Image
                   source={{ uri: item.profilePic2 }}
@@ -90,10 +94,13 @@ export default function ProfileScreen({
                   </Text>
                 </View>
               </View>
-              <TouchableOpacity style={styles.settings}>
+              <TouchableOpacity
+                onPress={() => handleRequestModal(item)}
+                style={styles.settings}
+              >
                 <TrashIcon width={25} />
               </TouchableOpacity>
-            </TouchableOpacity>
+            </View>
           )}
         />
       </View>
@@ -112,10 +119,7 @@ export default function ProfileScreen({
             const getRequest = item.user2 === userData.id;
 
             return (
-              <TouchableOpacity
-                onPress={() => handleRequestModal(item)}
-                style={styles.userCard}
-              >
+              <View style={styles.userCard}>
                 <View style={styles.flexRow}>
                   <Image
                     source={{ uri: item.profilePic2 }}
@@ -140,8 +144,7 @@ export default function ProfileScreen({
                   {getRequest && (
                     <TouchableOpacity
                       onPress={() => {
-                        // acceptFriendReques(item.user1);
-                        console.log('sd:', item);
+                        acceptFriendReques(item._id);
                       }}
                       style={styles.settings}
                     >
@@ -149,11 +152,14 @@ export default function ProfileScreen({
                     </TouchableOpacity>
                   )}
 
-                  <TouchableOpacity style={styles.settings}>
+                  <TouchableOpacity
+                    onPress={() => handleRequestModal(item)}
+                    style={styles.settings}
+                  >
                     <TrashIcon width={25} />
                   </TouchableOpacity>
                 </View>
-              </TouchableOpacity>
+              </View>
             );
           }}
         />

@@ -1,7 +1,7 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MapView, { Marker } from 'react-native-maps';
 import { useQuery } from '@tanstack/react-query';
-import { Image, View, Text, TouchableOpacity } from 'react-native';
+import { Image, View, Text, TouchableOpacity, Alert } from 'react-native';
 import React, { useState } from 'react';
 import Header from '../../components/Header';
 import { explore } from '../../api/explore';
@@ -20,6 +20,7 @@ export default function DiscoverScreen() {
   const [distance, setDistance] = useState(80);
   const [resquestModal, setRequestModal] = useState<boolean>(false);
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
+  const [selectedUserName, setSelectedUserName] = useState<string | null>(null);
 
   const { location, loading, refresh } = useCurrentLocation();
 
@@ -52,6 +53,12 @@ export default function DiscoverScreen() {
     try {
       const response = await requestFriend(selectedUserId);
       console.log('res:', response);
+      if (response.success) {
+        setModalVisible(false);
+      } else {
+        Alert.alert(response.message);
+        setModalVisible(false);
+      }
     } catch (err: any) {
       console.error(err);
     }
@@ -84,7 +91,10 @@ export default function DiscoverScreen() {
               }}
             >
               <TouchableOpacity
-                onPress={() => handleRequestModal(friend._id)}
+                onPress={() => {
+                  setSelectedUserName(friend.username);
+                  handleRequestModal(friend._id);
+                }}
                 style={styles.markerContainer}
               >
                 <View style={styles.bubble}>
@@ -183,7 +193,7 @@ export default function DiscoverScreen() {
             isModalVisible={resquestModal}
             setModalVisible={setRequestModal}
             title="Send Friend Request"
-            description="Are you sure you want to add @username as a friend?"
+            description={`Are you sure you want to add @${selectedUserName} as a friend?`}
             buttonText="No"
             buttonText2="Yes"
             onpress={() => setRequestModal(false)}

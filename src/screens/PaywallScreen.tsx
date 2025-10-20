@@ -1,12 +1,28 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Colors from '../../assets/theme/Colors';
 import LottieView from 'lottie-react-native';
 import SecurityIcon from '../assets/icon/security-icon';
+import { purchaseUser } from '../api/user';
 
 export default function PaywallScreen() {
   const [selectedPay, setSelectedPay] = useState<boolean>(true);
+  const handlePurchase = async () => {
+    const response = await purchaseUser();
+    if (response.success) {
+      Alert.alert(response.message);
+    } else {
+      Alert.alert(response.message);
+    }
+  };
   return (
     <SafeAreaView style={styles.flex} edges={['top']}>
       <View style={styles.header}>
@@ -100,7 +116,7 @@ export default function PaywallScreen() {
           It is secured by the Apple. Cancel Anytime
         </Text>
       </View>
-      <TouchableOpacity style={styles.continueBtn}>
+      <TouchableOpacity onPress={handlePurchase} style={styles.continueBtn}>
         <Text style={styles.continueText}>{'Continue -->'}</Text>
       </TouchableOpacity>
       <View
