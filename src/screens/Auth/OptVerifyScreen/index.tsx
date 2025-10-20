@@ -37,8 +37,9 @@ export default function OptVerifyScreen({
         const { setToken, setUser } = useAuthStore.getState();
         const { setCredit } = useCreditStore.getState();
         const _id = response.data.user._id;
+        const isPremium = response.data.user.isPremium;
         await setToken(response.data.token);
-        await setUser({ username, mail, _id });
+        await setUser({ username, mail, _id, isPremium });
         await setCredit(response.data.user.credits);
         setSuccessModal(true);
       } else {

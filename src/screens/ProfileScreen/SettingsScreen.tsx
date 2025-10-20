@@ -22,6 +22,7 @@ import { useAuthStore } from '../../store/authStore';
 export default function SettingsScreen() {
   const [resquestModal, setRequestModal] = useState<boolean>(false);
   const removeToken = useAuthStore(state => state.removeToken);
+  const userData = useAuthStore(state => state.user);
 
   const handleDeleteAccount = async () => {
     const response = await deleteUser();
@@ -69,12 +70,17 @@ export default function SettingsScreen() {
             <CicleUser width={20} height={20} />
             <Text style={styles.sectionText}>Membership status</Text>
           </View>
-          <BackIcon
-            width={10}
-            height={10}
-            color={'#8A8A8A'}
-            style={{ transform: [{ rotate: '180deg' }] }}
-          />
+          <View style={styles.row}>
+            <Text style={styles.sectionText}>
+              {userData.isPremium ? 'Premium' : 'Standart'}
+            </Text>
+            <BackIcon
+              width={10}
+              height={10}
+              color={'#8A8A8A'}
+              style={{ transform: [{ rotate: '180deg' }], marginLeft: 5 }}
+            />
+          </View>
         </TouchableOpacity>
         <TouchableOpacity style={styles.sectionButton}>
           <View style={styles.row}>

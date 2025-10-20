@@ -12,12 +12,19 @@ import Colors from '../../assets/theme/Colors';
 import LottieView from 'lottie-react-native';
 import SecurityIcon from '../assets/icon/security-icon';
 import { purchaseUser } from '../api/user';
+import { useAuthStore } from '../store/authStore';
 
 export default function PaywallScreen() {
   const [selectedPay, setSelectedPay] = useState<boolean>(true);
   const handlePurchase = async () => {
     const response = await purchaseUser();
     if (response.success) {
+      const { user, setUser } = useAuthStore.getState();
+      const username = user.username;
+      const _id = user.id;
+      const mail = user.mail;
+      const isPremium = true;
+      setUser({ username, mail, _id, isPremium });
       Alert.alert(response.message);
     } else {
       Alert.alert(response.message);
