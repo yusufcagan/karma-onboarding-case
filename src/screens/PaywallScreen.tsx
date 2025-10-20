@@ -13,6 +13,11 @@ import LottieView from 'lottie-react-native';
 import SecurityIcon from '../assets/icon/security-icon';
 import { purchaseUser } from '../api/user';
 import { useAuthStore } from '../store/authStore';
+import {
+  horizontalScale,
+  moderateScale,
+  verticalScale,
+} from '../helper/Metrics';
 
 export default function PaywallScreen() {
   const [selectedPay, setSelectedPay] = useState<boolean>(true);
@@ -143,7 +148,7 @@ const styles = StyleSheet.create({
   },
   header: {
     borderBottomWidth: 1,
-    borderBottomColor: '#0000001A',
+    borderBottomColor: Colors.Black10,
   },
   logo: {
     alignSelf: 'center',
@@ -155,66 +160,66 @@ const styles = StyleSheet.create({
   },
   lottie: {
     width: '90%',
-    height: 350,
+    height: verticalScale(350),
     alignSelf: 'center',
   },
   title: {
-    fontSize: 24,
+    fontSize: moderateScale(24),
     fontWeight: '700',
     color: Colors.Black,
     textAlign: 'center',
-    marginTop: 20,
+    marginTop: verticalScale(20),
   },
   desc: {
-    fontSize: 18,
-    marginHorizontal: 40,
+    fontSize: moderateScale(18),
+    marginHorizontal: horizontalScale(40),
     fontWeight: '400',
     color: '#ADADAD',
     textAlign: 'center',
-    marginTop: 20,
-    marginBottom: 10,
+    marginTop: verticalScale(20),
+    marginBottom: verticalScale(10),
   },
   sectionBtn: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 10,
+    paddingHorizontal: horizontalScale(10),
+    paddingVertical: verticalScale(10),
     justifyContent: 'space-between',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#0000001A',
-    marginHorizontal: 15,
-    marginTop: 10,
+    borderColor: Colors.Black10,
+    marginHorizontal: horizontalScale(15),
+    marginTop: verticalScale(10),
   },
   section: {
     width: 20,
     height: 20,
     borderRadius: 15,
     borderWidth: 1,
-    borderColor: '#0000001A',
+    borderColor: Colors.Black10,
     justifyContent: 'center',
     alignItems: 'center',
   },
   text: {
-    marginLeft: 5,
-    fontSize: 14,
+    marginLeft: horizontalScale(5),
+    fontSize: moderateScale(14),
     fontWeight: '600',
   },
   best: {
     backgroundColor: Colors.Primary,
-    paddingHorizontal: 12,
-    paddingVertical: 4,
+    paddingHorizontal: horizontalScale(12),
+    paddingVertical: verticalScale(4),
     borderRadius: 30,
-    marginLeft: 5,
+    marginLeft: horizontalScale(5),
   },
   bestText: {
     color: Colors.White,
-    fontSize: 13,
+    fontSize: moderateScale(13),
     fontWeight: '600',
   },
   prince: {
     color: Colors.Black,
-    fontSize: 15,
+    fontSize: moderateScale(13),
     fontWeight: '600',
   },
   weekText: {
@@ -222,9 +227,9 @@ const styles = StyleSheet.create({
   },
   securiText: {
     color: '#787878',
-    fontSize: 13,
+    fontSize: moderateScale(13),
     fontWeight: '500',
-    marginLeft: 5,
+    marginLeft: horizontalScale(5),
   },
   continueBtn: {
     backgroundColor: Colors.Primary,
@@ -233,11 +238,11 @@ const styles = StyleSheet.create({
     width: '90%',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 40,
+    height: verticalScale(40),
   },
   continueText: {
     color: Colors.White,
-    fontSize: 16,
+    fontSize: moderateScale(16),
     fontWeight: '600',
   },
 });

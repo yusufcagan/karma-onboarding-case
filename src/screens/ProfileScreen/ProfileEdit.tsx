@@ -14,6 +14,7 @@ import { ProfileStackParamList } from '../../../RootStackParamList';
 import { useAuthStore } from '../../store/authStore';
 import UserIcon from '../../assets/icon/user-icon';
 import ModalComponent from '../../components/ModalComponent';
+import { horizontalScale, moderateScale } from '../../helper/Metrics';
 
 export default function ProfileEdit({
   navigation,
@@ -90,14 +91,14 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.White,
   },
   header: {
-    marginTop: 20,
-    paddingHorizontal: 20,
+    marginTop: horizontalScale(20),
+    paddingHorizontal: horizontalScale(20),
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
   title: {
-    fontSize: 24,
+    fontSize: moderateScale(24),
     fontWeight: '700',
     color: Colors.Black,
   },
@@ -108,32 +109,32 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: '#0000001A',
+    borderColor: Colors.Black10,
   },
   line: {
     borderBottomWidth: 1,
-    borderBottomColor: '#0000001A',
-    marginTop: 20,
+    borderBottomColor: Colors.Black10,
+    marginTop: horizontalScale(20),
   },
   image: {
-    width: 130,
-    height: 130,
-    marginTop: 40,
+    width: horizontalScale(130),
+    height: horizontalScale(130),
+    marginTop: horizontalScale(140),
     alignSelf: 'center',
   },
   content: {
-    paddingHorizontal: 25,
+    paddingHorizontal: horizontalScale(15),
   },
   inputText: {
-    fontSize: 14,
+    fontSize: moderateScale(14),
     fontWeight: '600',
-    marginTop: 10,
+    marginTop: horizontalScale(10),
   },
   input: {
-    marginTop: 10,
+    marginTop: horizontalScale(10),
     backgroundColor: '#F7F7F7',
     borderWidth: 1,
-    borderColor: '#0000001A',
+    borderColor: Colors.Black10,
     borderRadius: 12,
     padding: 14,
   },
@@ -141,19 +142,19 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.Primary,
     borderRadius: 30,
     padding: 10,
-    marginTop: 20,
+    marginTop: horizontalScale(20),
   },
   saveText: {
     color: Colors.White,
-    fontSize: 15,
+    fontSize: moderateScale(15),
     fontWeight: '700',
     textAlign: 'center',
   },
   cancelText: {
     color: Colors.Black,
-    fontSize: 14,
+    fontSize: moderateScale(14),
     fontWeight: '400',
     textAlign: 'center',
-    marginTop: 15,
+    marginTop: horizontalScale(15),
   },
 });

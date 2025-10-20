@@ -1,5 +1,10 @@
 import { StyleSheet } from 'react-native';
 import Colors from '../../../../assets/theme/Colors';
+import {
+  horizontalScale,
+  moderateScale,
+  verticalScale,
+} from '../../../helper/Metrics';
 
 export const styles = StyleSheet.create({
   flex: {
@@ -8,52 +13,52 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    fontSize: 28,
+    fontSize: moderateScale(28),
     fontWeight: '800',
-    marginTop: 20,
+    marginTop: verticalScale(20),
     textAlign: 'center',
     color: Colors.Black,
   },
   container: {
-    marginHorizontal: 20,
-    marginTop: 80,
+    marginHorizontal: horizontalScale(20),
+    marginTop: verticalScale(80),
   },
   lottie: {
     width: '90%',
-    height: 350,
+    height: verticalScale(320),
   },
   aiTex: {
     color: Colors.Primary,
   },
   title: {
-    fontSize: 20,
+    fontSize: moderateScale(20),
     fontWeight: '600',
     color: Colors.Black,
     textAlign: 'center',
   },
   desc: {
-    fontSize: 18,
+    fontSize: moderateScale(18),
     fontWeight: '600',
     color: Colors.Gray,
     textAlign: 'center',
-    marginTop: 10,
+    marginTop: verticalScale(10),
   },
   signupBtn: {
-    marginTop: 40,
+    marginTop: verticalScale(40),
     backgroundColor: Colors.Primary,
-    paddingVertical: 20,
+    paddingVertical: verticalScale(20),
     alignItems: 'center',
-    borderRadius: 30,
+    borderRadius: moderateScale(30),
   },
   signBtnText: {
     color: Colors.White,
-    fontSize: 16,
+    fontSize: moderateScale(16),
     fontWeight: '800',
   },
   loginText: {
-    marginTop: 20,
+    marginTop: verticalScale(40),
     color: Colors.Primary,
-    fontSize: 16,
+    fontSize: moderateScale(16),
     fontWeight: '800',
     textAlign: 'center',
   },

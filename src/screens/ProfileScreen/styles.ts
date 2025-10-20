@@ -1,5 +1,10 @@
 import { StyleSheet } from 'react-native';
 import Colors from '../../../assets/theme/Colors';
+import {
+  horizontalScale,
+  moderateScale,
+  verticalScale,
+} from '../../helper/Metrics';
 
 export const styles = StyleSheet.create({
   flex: {
@@ -7,8 +12,8 @@ export const styles = StyleSheet.create({
     backgroundColor: Colors.White,
   },
   header: {
-    paddingHorizontal: 20,
-    marginTop: 20,
+    paddingHorizontal: horizontalScale(20),
+    marginTop: verticalScale(20),
   },
   row: {
     flexDirection: 'row',
@@ -16,7 +21,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   title: {
-    fontSize: 24,
+    fontSize: moderateScale(24),
     fontWeight: '700',
     color: Colors.Black,
   },
@@ -27,42 +32,42 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
-    marginLeft: 10,
-    borderColor: '#0000001A',
+    marginLeft: horizontalScale(10),
+    borderColor: Colors.Black10,
   },
   userContainer: {
     flexDirection: 'row',
-    marginTop: 20,
+    marginTop: verticalScale(20),
     alignItems: 'center',
   },
   username: {
-    fontSize: 18,
+    fontSize: moderateScale(18),
     fontWeight: '500',
     color: Colors.Black,
   },
   mailContainer: {
     backgroundColor: '#E8DAFF',
     borderRadius: 10,
-    marginTop: 5,
+    marginTop: verticalScale(5),
   },
   mailText: {
     color: Colors.Primary,
-    fontSize: 16,
+    fontSize: moderateScale(16),
     fontWeight: '500',
-    paddingVertical: 5,
-    paddingHorizontal: 10,
+    paddingVertical: verticalScale(5),
+    paddingHorizontal: horizontalScale(10),
   },
   line: {
     borderTopWidth: 1,
-    borderColor: '#0000001A',
-    marginTop: 15,
+    borderColor: Colors.Black10,
+    marginTop: verticalScale(15),
   },
   content: {
     flex: 1,
     backgroundColor: '#F3F6FD',
     padding: 20,
     borderTopWidth: 1,
-    borderTopColor: '#0000001A',
+    borderTopColor: Colors.Black10,
   },
   flexRow: {
     flexDirection: 'row',
@@ -72,12 +77,12 @@ export const styles = StyleSheet.create({
     backgroundColor: Colors.White,
     borderRadius: 15,
     flexDirection: 'row',
-    paddingHorizontal: 15,
-    paddingVertical: 15,
+    paddingHorizontal: horizontalScale(15),
+    paddingVertical: verticalScale(15),
     justifyContent: 'space-between',
     borderWidth: 1,
-    borderColor: '#0000001A',
-    marginTop: 10,
+    borderColor: Colors.Black10,
+    marginTop: verticalScale(10),
   },
   userImage: {
     width: 30,
@@ -85,17 +90,17 @@ export const styles = StyleSheet.create({
     borderRadius: 15,
   },
   userTextContainer: {
-    marginLeft: 10,
+    marginLeft: horizontalScale(10),
   },
   userCardUsername: {
-    fontSize: 14,
+    fontSize: moderateScale(14),
     fontWeight: '500',
     color: Colors.Black,
   },
   lastSeen: {
-    fontSize: 13,
+    fontSize: moderateScale(13),
     fontWeight: '500',
     color: Colors.Gray,
-    marginTop: 2,
+    marginTop: verticalScale(2),
   },
 });

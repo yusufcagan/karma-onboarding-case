@@ -57,7 +57,7 @@ const ModalComponent = ({
                   {
                     backgroundColor: Colors.White,
                     borderWidth: 1,
-                    borderColor: '#0000001A',
+                    borderColor: Colors.Black10,
                   },
                 ]}
                 onPress={onpress ? onpress : toggleModal}

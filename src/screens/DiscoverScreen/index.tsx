@@ -1,6 +1,6 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MapView, { Marker } from 'react-native-maps';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Image, View, Text, TouchableOpacity, Alert } from 'react-native';
 import React, { useState } from 'react';
 import Header from '../../components/Header';
@@ -23,6 +23,7 @@ export default function DiscoverScreen() {
   const [selectedUserName, setSelectedUserName] = useState<string | null>(null);
 
   const { location, loading, refresh } = useCurrentLocation();
+  const queryClient = useQueryClient();
 
   const { data: getExplore } = useQuery({
     queryKey: ['getExplore', distance],
@@ -54,10 +55,11 @@ export default function DiscoverScreen() {
       const response = await requestFriend(selectedUserId);
       console.log('res:', response);
       if (response.success) {
-        setModalVisible(false);
+        setRequestModal(false);
+        queryClient.invalidateQueries({ queryKey: ['getFriendData'] });
       } else {
         Alert.alert(response.message);
-        setModalVisible(false);
+        setRequestModal(false);
       }
     } catch (err: any) {
       console.error(err);

@@ -6,6 +6,7 @@ import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 import Colors from '../../../assets/theme/Colors';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { HomeStackParamList } from '../../../RootStackParamList';
+import { moderateScale } from '../../helper/Metrics';
 
 export default function GeneratingScreen({
   navigation,
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    fontSize: 26,
+    fontSize: moderateScale(24),
     fontWeight: '600',
     color: Colors.White,
   },
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   endText: {
-    fontSize: 16,
+    fontSize: moderateScale(16),
     fontWeight: '600',
     textAlign: 'center',
     color: '#747474',

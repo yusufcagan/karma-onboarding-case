@@ -1,5 +1,10 @@
 import { StyleSheet } from 'react-native';
 import Colors from '../../../../assets/theme/Colors';
+import {
+  horizontalScale,
+  moderateScale,
+  verticalScale,
+} from '../../../helper/Metrics';
 
 export const styles = StyleSheet.create({
   flex: {
@@ -7,17 +12,17 @@ export const styles = StyleSheet.create({
     backgroundColor: Colors.White,
   },
   title: {
-    fontSize: 20,
+    fontSize: moderateScale(20),
     fontWeight: '600',
     textAlign: 'center',
-    marginTop: 20,
+    marginTop: verticalScale(20),
     color: Colors.Black,
   },
   textInput: {
     borderBottomWidth: 2,
     borderColor: Colors.Primary,
-    marginHorizontal: 35,
-    height: 40,
+    marginHorizontal: horizontalScale(35),
+    height: verticalScale(40),
     justifyContent: 'center',
   },
   input: {
@@ -27,24 +32,24 @@ export const styles = StyleSheet.create({
   },
   tag: {
     color: Colors.Black,
-    fontSize: 14,
+    fontSize: moderateScale(14),
   },
   inputText: {
-    fontSize: 14,
+    fontSize: moderateScale(14),
     color: Colors.Black,
   },
   continueButton: {
     backgroundColor: Colors.Primary,
     marginHorizontal: 35,
-    height: 40,
+    height: verticalScale(40),
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 30,
+    marginTop: verticalScale(30),
   },
   continueText: {
     color: Colors.White,
-    fontSize: 14,
+    fontSize: moderateScale(14),
     fontWeight: '600',
   },
 });

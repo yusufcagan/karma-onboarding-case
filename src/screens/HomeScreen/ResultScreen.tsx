@@ -7,6 +7,11 @@ import DeleteIcon from '../../assets/icon/delete-icon';
 import GalleryIcon from '../../assets/icon/gallery-icon';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { HomeStackParamList } from '../../../RootStackParamList';
+import {
+  horizontalScale,
+  moderateScale,
+  verticalScale,
+} from '../../helper/Metrics';
 
 export default function ResultScreen({
   navigation,
@@ -53,15 +58,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
+    paddingHorizontal: horizontalScale(20),
   },
   title: {
-    fontSize: 18,
+    fontSize: moderateScale(18),
     fontWeight: '600',
     color: Colors.Black,
   },
   backBtn: {
-    backgroundColor: '#0000001A',
+    backgroundColor: Colors.Black10,
     width: 40,
     height: 40,
     borderRadius: 25,
@@ -81,29 +86,29 @@ const styles = StyleSheet.create({
     borderColor: '#00000033',
     borderRadius: 14,
     width: '85%',
-    height: 400,
+    height: verticalScale(400),
     justifyContent: 'center',
     alignSelf: 'center',
   },
   footer: {
     borderTopWidth: 1,
-    borderTopColor: '#0000001A',
+    borderTopColor: Colors.Black10,
   },
   save: {
     borderWidth: 1,
-    borderColor: '#0000001A',
+    borderColor: Colors.Black10,
     borderRadius: 50,
-    paddingHorizontal: 25,
+    paddingHorizontal: horizontalScale(25),
     paddingVertical: 5,
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'center',
-    marginTop: 30,
+    marginTop: verticalScale(30),
   },
   saveText: {
     color: Colors.Black,
-    fontSize: 16,
+    fontSize: moderateScale(16),
     fontWeight: '500',
-    marginLeft: 10,
+    marginLeft: horizontalScale(10),
   },
 });

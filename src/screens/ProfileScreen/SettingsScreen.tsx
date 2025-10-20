@@ -18,6 +18,11 @@ import TrashIcon2 from '../../assets/icon/trash-icon2';
 import { deleteUser } from '../../api/user';
 import ModalComponent from '../../components/ModalComponent';
 import { useAuthStore } from '../../store/authStore';
+import {
+  horizontalScale,
+  moderateScale,
+  verticalScale,
+} from '../../helper/Metrics';
 
 export default function SettingsScreen() {
   const [resquestModal, setRequestModal] = useState<boolean>(false);
@@ -77,7 +82,7 @@ export default function SettingsScreen() {
             <BackIcon
               width={10}
               height={10}
-              color={'#8A8A8A'}
+              color={Colors.Gray30}
               style={{ transform: [{ rotate: '180deg' }], marginLeft: 5 }}
             />
           </View>
@@ -90,7 +95,7 @@ export default function SettingsScreen() {
           <BackIcon
             width={10}
             height={10}
-            color={'#8A8A8A'}
+            color={Colors.Gray30}
             style={{ transform: [{ rotate: '180deg' }] }}
           />
         </TouchableOpacity>
@@ -108,7 +113,7 @@ export default function SettingsScreen() {
           <BackIcon
             width={10}
             height={10}
-            color={'#8A8A8A'}
+            color={Colors.Gray30}
             style={{ transform: [{ rotate: '180deg' }] }}
           />
         </TouchableOpacity>
@@ -120,7 +125,7 @@ export default function SettingsScreen() {
           <BackIcon
             width={10}
             height={10}
-            color={'#8A8A8A'}
+            color={Colors.Gray30}
             style={{ transform: [{ rotate: '180deg' }] }}
           />
         </TouchableOpacity>
@@ -138,7 +143,7 @@ export default function SettingsScreen() {
           <BackIcon
             width={10}
             height={10}
-            color={'#8A8A8A'}
+            color={Colors.Gray30}
             style={{ transform: [{ rotate: '180deg' }] }}
           />
         </TouchableOpacity>
@@ -153,7 +158,7 @@ export default function SettingsScreen() {
           <BackIcon
             width={10}
             height={10}
-            color={'#8A8A8A'}
+            color={Colors.Gray30}
             style={{ transform: [{ rotate: '180deg' }] }}
           />
         </TouchableOpacity>
@@ -168,7 +173,7 @@ export default function SettingsScreen() {
           <BackIcon
             width={10}
             height={10}
-            color={'#8A8A8A'}
+            color={Colors.Gray30}
             style={{ transform: [{ rotate: '180deg' }] }}
           />
         </TouchableOpacity>
@@ -183,7 +188,7 @@ export default function SettingsScreen() {
           <BackIcon
             width={10}
             height={10}
-            color={'#8A8A8A'}
+            color={Colors.Gray30}
             style={{ transform: [{ rotate: '180deg' }] }}
           />
         </TouchableOpacity>
@@ -212,9 +217,9 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   title: {
-    fontSize: 16,
+    fontSize: moderateScale(16),
     fontWeight: '600',
-    marginTop: 10,
+    marginTop: verticalScale(10),
   },
   row: {
     flexDirection: 'row',
@@ -222,28 +227,28 @@ const styles = StyleSheet.create({
   },
   content: {
     borderWidth: 1,
-    borderColor: '#0000001A',
+    borderColor: Colors.Black10,
     borderRadius: 20,
-    marginTop: 15,
+    marginTop: verticalScale(15),
     padding: 10,
   },
   sectionButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginVertical: 10,
+    marginVertical: verticalScale(10),
   },
   sectionText: {
-    fontSize: 14,
+    fontSize: moderateScale(14),
     fontWeight: '600',
-    color: '#8A8A8A',
-    marginLeft: 10,
+    color: Colors.Gray30,
+    marginLeft: horizontalScale(10),
   },
   footerText: {
-    fontSize: 15,
+    fontSize: moderateScale(15),
     color: '#9B9B9B',
     fontWeight: '600',
     textAlign: 'center',
-    marginTop: 40,
+    marginTop: verticalScale(40),
   },
 });

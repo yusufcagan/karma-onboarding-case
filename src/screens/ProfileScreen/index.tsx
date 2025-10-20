@@ -211,7 +211,7 @@ export default function ProfileScreen({
           <View
             style={{
               flexDirection: 'row',
-              backgroundColor: '#0000001A',
+              backgroundColor: Colors.Black10,
               borderRadius: 25,
               marginHorizontal: 20,
               marginTop: 10,

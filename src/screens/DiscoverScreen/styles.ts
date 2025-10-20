@@ -1,5 +1,10 @@
 import { StyleSheet } from 'react-native';
 import Colors from '../../../assets/theme/Colors';
+import {
+  horizontalScale,
+  moderateScale,
+  verticalScale,
+} from '../../helper/Metrics';
 
 export const styles = StyleSheet.create({
   flex: {
@@ -15,7 +20,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 20,
     paddingVertical: 6,
-    paddingHorizontal: 10,
+    paddingHorizontal: horizontalScale(10),
     borderColor: '#DADADA',
     borderWidth: 1,
     shadowColor: '#000',
@@ -26,24 +31,24 @@ export const styles = StyleSheet.create({
     height: 60,
   },
   emthyView: {
-    width: 65,
+    width: horizontalScale(65),
   },
   username: {
-    fontSize: 15,
+    fontSize: moderateScale(15),
     color: Colors.Black,
     fontWeight: '600',
     marginRight: 6,
   },
   time: {
-    fontSize: 13,
+    fontSize: moderateScale(13),
     color: Colors.Black,
     fontWeight: '500',
     marginTop: 2,
   },
   avatar: {
-    width: 65,
-    height: 65,
-    borderRadius: 14,
+    width: horizontalScale(65),
+    height: horizontalScale(65),
+    borderRadius: horizontalScale(14),
   },
   avatarOverlay: {
     position: 'absolute',
@@ -51,9 +56,9 @@ export const styles = StyleSheet.create({
     backgroundColor: Colors.White,
     justifyContent: 'center',
     alignItems: 'center',
-    height: 70,
-    width: 70,
-    borderRadius: 14,
+    height: horizontalScale(70),
+    width: horizontalScale(70),
+    borderRadius: horizontalScale(14),
   },
   pointer: {
     width: 0,
@@ -84,13 +89,13 @@ export const styles = StyleSheet.create({
     bottom: 20,
     left: 20,
     borderWidth: 1,
-    borderColor: '#0000001A',
+    borderColor: Colors.Black10,
     justifyContent: 'center',
     alignItems: 'center',
   },
   modalOverlay: {
     flex: 1,
-    marginTop: 150,
+    marginTop: verticalScale(150),
     alignItems: 'center',
   },
   modalContent: {
@@ -101,49 +106,49 @@ export const styles = StyleSheet.create({
     width: '85%',
     position: 'absolute',
     alignSelf: 'center',
-    top: 20,
+    top: verticalScale(20),
   },
   modalTitle: {
-    fontSize: 18,
+    fontSize: moderateScale(18),
     color: 'black',
-    marginBottom: 10,
+    marginBottom: verticalScale(10),
     fontWeight: '700',
   },
   subTitle: {
-    fontSize: 12,
+    fontSize: moderateScale(12),
     color: '#696969',
     fontWeight: '500',
     marginTop: -6,
-    marginBottom: 10,
+    marginBottom: verticalScale(10),
   },
   sliderLabels: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '95%',
-    marginBottom: 6,
+    marginBottom: verticalScale(6),
   },
   labelText: {
-    fontSize: 12,
+    fontSize: moderateScale(12),
     color: '#888',
     fontWeight: '500',
   },
   valueText: {
-    marginTop: 8,
-    fontSize: 14,
+    marginTop: verticalScale(8),
+    fontSize: moderateScale(14),
     fontWeight: '600',
     color: Colors.Primary,
   },
   applyButton: {
     backgroundColor: '#9962FF',
     borderRadius: 20,
-    paddingHorizontal: 30,
-    paddingVertical: 8,
-    marginTop: 40,
+    paddingHorizontal: horizontalScale(30),
+    paddingVertical: verticalScale(8),
+    marginTop: verticalScale(40),
     width: '90%',
   },
   applyButtonText: {
     color: 'white',
-    fontSize: 16,
+    fontSize: moderateScale(16),
     fontWeight: '700',
     textAlign: 'center',
   },
