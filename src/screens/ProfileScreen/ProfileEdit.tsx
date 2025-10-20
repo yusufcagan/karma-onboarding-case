@@ -55,7 +55,8 @@ export default function ProfileEdit({
           disabled={!username || !mail || !password}
           onPress={() => {
             const _id = userData?.id;
-            setUser({ username, mail, _id });
+            const isPremium = userData.isPremium;
+            setUser({ username, mail, _id, isPremium });
             setRequestModal(true);
           }}
           style={[
